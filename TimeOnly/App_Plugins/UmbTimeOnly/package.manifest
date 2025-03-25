@@ -10,7 +10,7 @@
             "group": "Common",
             "editor": {
                 "view": "/App_Plugins/UmbTimeOnly/umbtimeonly.html",
-                "valueType": "string"
+                "valueType": "JSON"
             }
         }
     ],

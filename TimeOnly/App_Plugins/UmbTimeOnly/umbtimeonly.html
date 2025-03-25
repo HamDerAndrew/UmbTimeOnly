@@ -1,3 +1,12 @@
 <div ng-controller="UmbTimeOnlyController">
-<p>{{time}}</p>
+  <!-- <input type="text" id="timeInput" ng-model="model.value.hour"/> -->
+  <p>Time picked is: <br /> hour:{{model.value.hour}} min:{{model.value.minutte}} sec:{{model.value.second}}</p>
+  <button type="button" id="open-modal" ng-click="model.openModal()">Pick time</button>
+  <div id="time-only-modal" ng-if="model.isOpen">
+    <p>This is a modal</p>
+    <p>Hour:</p> <input min="0" type="number" max="24" ng-model="model.value.hour" ng-change="model.timeChanged('hour')"/>
+    <p>Minutte:</p> <input min="0" type="number" max="60" ng-model="model.value.minutte" ng-change="model.timeChanged('minutte')"/>
+    <p>Second:</p> <input min="0" type="number" max="60" ng-model="model.value.second" ng-change="model.timeChanged('second')"/>
+    <button type="button" ng-click="model.setTime()">Set time</button>
+  </div>
 </div>
