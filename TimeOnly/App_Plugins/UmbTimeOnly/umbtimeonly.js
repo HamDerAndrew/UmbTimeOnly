@@ -1,12 +1,13 @@
 angular.module("umbraco").controller("UmbTimeOnlyController", function ($scope) {
     if(!$scope.model.value) {
         $scope.model.value = {
-            hour: 0, 
-            minutte: 0, 
-            second: 0,
+            hour: "", 
+            minutte: "", 
+            second: "",
             formatted: 0
         }
     }
+
     $scope.model.isOpen = false
 
     $scope.model.openModal = function() {
@@ -23,7 +24,7 @@ angular.module("umbraco").controller("UmbTimeOnlyController", function ($scope) 
         // With AngularJS you can pass an identifier in the ng-change event to find out which input fired the event 😎
         if(typeOfTime === "hour") {
             console.log("The hour", $scope.model.hour)
-            $scope.model.hour = $scope.model.value.hour
+            
         }
         if(typeOfTime === "minutte") {
             console.log("The hour", $scope.model.value.minutte)

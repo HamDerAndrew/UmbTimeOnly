@@ -4,9 +4,21 @@
   <button type="button" id="open-modal" ng-click="model.openModal()">Pick time</button>
   <div id="time-only-modal" ng-if="model.isOpen">
     <p>This is a modal</p>
-    <p>Hour:</p> <input min="0" type="number" max="24" ng-model="model.value.hour" ng-change="model.timeChanged('hour')"/>
-    <p>Minutte:</p> <input min="0" type="number" max="60" ng-model="model.value.minutte" ng-change="model.timeChanged('minutte')"/>
-    <p>Second:</p> <input min="0" type="number" max="60" ng-model="model.value.second" ng-change="model.timeChanged('second')"/>
+    <div class="time-container">
+      <div class="time-input">
+        <p>Hour:</p> 
+        <input type="text" ng-model="model.value.hour" ng-change="model.timeChanged('hour')"/>
+      </div>
+      <div class="time-input">
+        <p>Minutte:</p> 
+        <input type="text" ng-model="model.value.minutte" ng-change="model.timeChanged('minutte')"/>
+      </div>
+      <div class="time-input">
+        <p>Second:</p> 
+        <input type="text" ng-model="model.value.second" ng-change="model.timeChanged('second')"/>
+      </div>
+    </div>
+    
     <button type="button" ng-click="model.setTime()">Set time</button>
   </div>
 </div>
