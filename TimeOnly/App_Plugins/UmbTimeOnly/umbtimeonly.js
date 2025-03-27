@@ -1,36 +1,36 @@
 angular.module("umbraco").controller("UmbTimeOnlyController", function ($scope) {
     if(!$scope.model.value) {
-        $scope.model.value = {
-            hour: "", 
-            minutte: "", 
-            second: "",
-            formatted: 0
-        }
+        $scope.model.value = ""
     }
 
-    $scope.model.isOpen = false
+    if (typeof $scope.model.value === 'string') {
+        $scope.model.timeValue = parseTimeStringToDate($scope.model.value);
+    }
+    
+    $scope.$watch('model.timeValue', function (newVal) {
+        $scope.model.value = formatDateToTimeString(newVal);
+    });
 
-    $scope.model.openModal = function() {
-        $scope.model.isOpen = true
-        console.log("Opening modal")
+    function parseTimeStringToDate(timeString) {
+        // If the timeString does not match this format: hh:mm:ss
+        if (!timeString || !/^\d{2}:\d{2}:\d{2}$/.test(timeString)) {
+            return null;
+        }
+    
+        const [hours, minutes, seconds] = timeString.split(':').map(Number);
+        const date = new Date();
+        date.setHours(hours, minutes, seconds, 0);
+        return date;
     }
 
-    $scope.model.setTime = function(event) {
-        console.log(event)
-        console.log("The hour", $scope.model.value.hour)
-    }
-
-    $scope.model.timeChanged = function(typeOfTime) {
-        // With AngularJS you can pass an identifier in the ng-change event to find out which input fired the event 😎
-        if(typeOfTime === "hour") {
-            console.log("The hour", $scope.model.hour)
-            
+    function formatDateToTimeString(date) {
+        if (!(date instanceof Date) || isNaN(date.getTime())) {
+            return null;
         }
-        if(typeOfTime === "minutte") {
-            console.log("The hour", $scope.model.value.minutte)
-        }
-        if(typeOfTime === "second") {
-            console.log("The hour", $scope.model.value.second)
-        }
+    
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
     }
 })
