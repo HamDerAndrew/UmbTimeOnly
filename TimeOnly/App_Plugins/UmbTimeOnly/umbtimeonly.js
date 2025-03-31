@@ -1,36 +1,54 @@
 angular.module("umbraco").controller("UmbTimeOnlyController", function ($scope) {
     if(!$scope.model.value) {
-        $scope.model.value = ""
+        $scope.model.value = {
+            hour: 0,
+            minutes: 0,
+            seconds: 0
+        }
     }
 
-    if (typeof $scope.model.value === 'string') {
-        $scope.model.timeValue = parseTimeStringToDate($scope.model.value);
+    if (typeof $scope.model.value === 'object' && $scope.model.value != null) {
+        $scope.model.timeValue = buildDateObjectFromTime($scope.model.value);
     }
     
+    // Watch for changes to the time input and update it
     $scope.$watch('model.timeValue', function (newVal) {
-        $scope.model.value = formatDateToTimeString(newVal);
+        $scope.model.value = extractTimePartsFromDate(newVal);
     });
 
-    function parseTimeStringToDate(timeString) {
-        // If the timeString does not match this format: hh:mm:ss
-        if (!timeString || !/^\d{2}:\d{2}:\d{2}$/.test(timeString)) {
+    function buildDateObjectFromTime(timeObj) {
+        if (!timeObj) {
             return null;
         }
     
-        const [hours, minutes, seconds] = timeString.split(':').map(Number);
+        const { hour, minutes, seconds } = timeObj
         const date = new Date();
-        date.setHours(hours, minutes, seconds, 0);
+        date.setHours(hour, minutes, seconds, 0);
         return date;
     }
 
-    function formatDateToTimeString(date) {
+    $scope.useCurrentTime = function() {
+        const date = new Date();
+        $scope.model.timeValue = buildDateObjectFromTime({
+            hour: date.getHours(),
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds()
+        });
+        console.log("Clicked")
+    }
+
+    function extractTimePartsFromDate(date) {
         if (!(date instanceof Date) || isNaN(date.getTime())) {
             return null;
         }
-    
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        const seconds = date.getSeconds().toString().padStart(2, '0');
-        return `${hours}:${minutes}:${seconds}`;
+
+        const hours = date.getHours()
+        const minutes = date.getMinutes()
+        const seconds = date.getSeconds()
+        return time = {
+            hour: hours,
+            minutes: minutes,
+            seconds: seconds
+        }
     }
 })
