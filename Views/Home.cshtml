@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using System.Globalization;
+@{
+	TimeOnly timeOnlyPropertyFromUmbraco = Model.TheTimeOnly;
+	string formattedTime = timeOnlyPropertyFromUmbraco.ToString("hh:mm tt", CultureInfo.InvariantCulture);
+	
+}
+
+@if (TimeOnly.FromDateTime(DateTime.Now) > timeOnlyPropertyFromUmbraco)
+{
+	<h1>@($"The current time is after {formattedTime}")</h1>
+}
+else
+{
+	<h1>@($"The current time is before {formattedTime}")</h1>
+}

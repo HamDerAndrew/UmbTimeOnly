@@ -1,0 +1,23 @@
+{
+    "name": "UmbTimeOnly",
+    "version": "13.7.2",
+    "allowPackageTelemetry": true,
+    "propertyEditors": [
+        {
+            "alias": "UmbTimeOnly",
+            "name": "UmbTimeOnly",
+            "icon": "icon-time",
+            "group": "Common",
+            "editor": {
+                "view": "/App_Plugins/UmbTimeOnly/umbtimeonly.html",
+                "valueType": "JSON"
+            }
+        }
+    ],
+    "css": [
+        "/App_Plugins/UmbTimeOnly/umbtimeonly.css"
+    ],
+    "javascript": [
+        "/App_Plugins/UmbTimeOnly/umbtimeonly.js"
+    ]
+}
