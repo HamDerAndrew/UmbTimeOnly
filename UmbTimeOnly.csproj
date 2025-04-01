@@ -9,10 +9,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <Version>13.7.2</Version>
     <PackageId>UmbTimeOnly</PackageId>
     <Product>UmbTimeOnly</Product>
     <Title>UmbTimeOnly</Title>
     <Description>...</Description>
+    <Authors>André Larsen</Authors>
     <PackageTags>umbraco plugin package</PackageTags>
     <PackageProjectUrl>https://github.com/HamDerAndrew/UmbTimeOnly</PackageProjectUrl>
     <RepositoryUrl>https://github.com/HamDerAndrew/UmbTimeOnly</RepositoryUrl>
