@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ContentTargetFolders>.</ContentTargetFolders>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-	  <PackageLicenseFile PackageLicenseFile>LICENSE</PackageLicenseFile>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup>
