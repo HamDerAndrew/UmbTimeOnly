@@ -34,7 +34,6 @@ angular.module("umbraco").controller("UmbTimeOnlyController", function ($scope) 
             minutes: date.getMinutes(),
             seconds: date.getSeconds()
         });
-        console.log("Clicked")
     }
 
     function extractTimePartsFromDate(date) {
