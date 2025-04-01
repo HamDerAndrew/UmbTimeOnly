@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UmbTimeOnlyContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\UmbTimeOnly\**\*.*</UmbTimeOnlyContentFilesPath>
+  </PropertyGroup>
+
+  <Target Name="CopyUmbTimeOnlyAssets" BeforeTargets="BeforeBuild">
+    <ItemGroup>
+      <UmbTimeOnlyContentFiles Include="$(UmbTimeOnlyContentFilesPath)" />
+    </ItemGroup>
+    <Message Text="Copying UmbTimeOnly files: $(UmbTimeOnlyContentFilesPath) - #@(UmbTimeOnlyContentFiles->Count()) files" Importance="high" />
+    <Copy SourceFiles="@(UmbTimeOnlyContentFiles)" DestinationFiles="@(UmbTimeOnlyContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\UmbTimeOnly\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="ClearUmbTimeOnlyAssets" BeforeTargets="Clean">
+    <ItemGroup>
+      <UmbTimeOnlyDir Include="$(MSBuildProjectDirectory)\App_Plugins\UmbTimeOnly\" />
+    </ItemGroup>
+    <Message Text="Clear old UmbTimeOnly data" Importance="high" />
+    <RemoveDir Directories="@(UmbTimeOnlyDir)" />
+  </Target>
+</Project>

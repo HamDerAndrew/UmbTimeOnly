@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ContentTargetFolders>.</ContentTargetFolders>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageLicenseFile PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>UmbTimeOnly</PackageId>
+    <Product>UmbTimeOnly</Product>
+    <Title>UmbTimeOnly</Title>
+    <Description>...</Description>
+    <PackageTags>umbraco plugin package</PackageTags>
+  </PropertyGroup>
+
+  <PackageProjectUrl>https://github.com/HamDerAndrew/UmbTimeOnly</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/HamDerAndrew/UmbTimeOnly</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>logo.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="13.7.2" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.7.2" />
+    <None Include="README.md" Pack="true" PackagePath=""/>
+	  <None Include="LICENSE" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Plugins\UmbTimeOnly\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="Always" />
+    <None Include="buildTransitive\**" Pack="true" PackagePath="buildTransitive" />
+  </ItemGroup>
+</Project>
