@@ -14,9 +14,7 @@
     <Title>UmbTimeOnly</Title>
     <Description>...</Description>
     <PackageTags>umbraco plugin package</PackageTags>
-  </PropertyGroup>
-
-  <PackageProjectUrl>https://github.com/HamDerAndrew/UmbTimeOnly</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/HamDerAndrew/UmbTimeOnly</PackageProjectUrl>
     <RepositoryUrl>https://github.com/HamDerAndrew/UmbTimeOnly</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>logo.png</PackageIcon>
