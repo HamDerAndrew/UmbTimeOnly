@@ -15,7 +15,7 @@
     <Title>UmbTimeOnly</Title>
     <Description>...</Description>
     <Authors>André Larsen</Authors>
-    <PackageTags>umbraco plugin package</PackageTags>
+    <PackageTags>umbraco plugin package umbraco-marketplace timeonly</PackageTags>
     <PackageProjectUrl>https://github.com/HamDerAndrew/UmbTimeOnly</PackageProjectUrl>
     <RepositoryUrl>https://github.com/HamDerAndrew/UmbTimeOnly</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
