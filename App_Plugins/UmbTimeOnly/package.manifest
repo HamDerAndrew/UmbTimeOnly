@@ -1,6 +1,6 @@
 {
     "name": "UmbTimeOnly",
-    "version": "13.7.4",
+    "version": "13.7.5",
     "allowPackageTelemetry": true,
     "propertyEditors": [
         {
