@@ -33,8 +33,20 @@
     ],
     "Screenshots": [
       {
-        "ImageUrl": "",
-        "Caption": ""
+        "ImageUrl": "./images/ShowCaseInput1.png",
+        "Caption": "UmbTimeOnly property editor where the time is not picked"
+      },
+      {
+        "ImageUrl": "./images/ShowCaseInput2.png",
+        "Caption": "UmbTimeOnly property editor where the time is picked"
+      },
+      {
+        "ImageUrl": "./images/UseCurrentTime1.png",
+        "Caption": "Before using the Current Time button"
+      },
+      {
+        "ImageUrl": "./images/UseCurrentTime2.png",
+        "Caption": "After using the Current Time button"
       }
     ],
     "Tags": [],
