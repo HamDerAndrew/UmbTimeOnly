@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>13.7.2</Version>
     <PackageId>UmbTimeOnly</PackageId>
     <Product>UmbTimeOnly</Product>
     <Title>UmbTimeOnly</Title>
@@ -27,11 +26,19 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="13.7.2" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="13.7.2" />
+    <PackageReference Include="Umbraco.Cms" Version="*" />
     <None Include="README.md" Pack="true" PackagePath=""/>
 	  <None Include="LICENSE" Pack="true" PackagePath=""/>
   </ItemGroup>
+
+  <Target Name="NpmBuild" BeforeTargets="BeforeBuild">
+    <Exec Command="npm install" WorkingDirectory="App_Plugins\UmbTimeOnly" />
+    <Exec Command="npm run build" WorkingDirectory="App_Plugins\UmbTimeOnly" />
+  </Target>
+
+  <Target Name="NpmRemove" AfterTargets="Build">
+      <RemoveDir Directories="App_Plugins\UmbTimeOnly\node_modules" />
+  </Target>
 
   <ItemGroup>
     <Content Include="App_Plugins\UmbTimeOnly\**" ExcludeFromSingleFile="true" CopyToPublishDirectory="Always" />

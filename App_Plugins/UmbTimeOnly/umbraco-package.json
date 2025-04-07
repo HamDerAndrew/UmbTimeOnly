@@ -1,0 +1,20 @@
+{
+    "$schema": "../../umbraco-package-schema.json",
+    "name": "UmbTimeOnly",
+    "version": "15.0.0",
+    "extensions": [
+        {
+            "type": "propertyEditorUi",
+            "alias": "UmbTimeOnly",
+            "name": "UmbTimeOnly",
+            "element": "/App_Plugins/UmbTimeOnly/dist/umbtimeonly.js",
+            "elementName": "umb-time-only",
+            "meta": {
+                "label": "UmbTimeOnly",
+                "icon": "icon-time",
+                "group": "common",
+                "propertyEditorSchemaAlias": "Umbraco.Plain.Json"
+            }
+        }
+    ]
+}
