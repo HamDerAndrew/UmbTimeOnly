@@ -1,7 +1,7 @@
 {
     "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
     "AddOnPackagesRequiredForUmbracoCloud": [],
-    "AlternateCategory": "",
+    "AlternateCategory": "Editor Tools",
     "AuthorDetails": {
       "Name": "André",
       "Description": "A webdeveloper who dabbles in front-end, Umbraco and .NET development.",
@@ -15,7 +15,7 @@
       ],
       "SyncContributorsFromRepository": true|false
     },
-    "Categories": "Developer Tools",
+    "Category": "Developer Tools",
     "Description": "A package that provides a custom property editor for choosing time only. It's a port of C#'s TimeOnly",
     "DiscussionForumUrl": "https://github.com/HamDerAndrew/UmbTimeOnly/discussions",
     "DocumentationUrl": "",
@@ -49,7 +49,7 @@
         "Caption": "After using the Current Time button"
       }
     ],
-    "Tags": [],
+    "Tags": ["TimeOnly", "TimePicker", "Time Picker"],
     "Title": "Umb Time Only",
     "VersionDependencyMode": "Default",
     "VersionSpecificPackageIds": [
