@@ -13,7 +13,7 @@
           "Url": ""
         }
       ],
-      "SyncContributorsFromRepository": true|false
+      "SyncContributorsFromRepository": false
     },
     "Category": "Developer Tools",
     "Description": "A package that provides a custom property editor for choosing time only. It's a port of C#'s TimeOnly",
