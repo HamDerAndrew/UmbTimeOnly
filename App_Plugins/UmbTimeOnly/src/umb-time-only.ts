@@ -37,7 +37,6 @@ export default class UmbTimeOnly extends LitElement implements UmbPropertyEditor
   #timeChanged(event: InputEvent) {
     const timeObject = this.#buildTimeObjectFromString((event.target as HTMLInputElement).value);
     this.value = timeObject;
-    console.log(this.value)
     this.#dispatchChangeEvent();
   }
 
