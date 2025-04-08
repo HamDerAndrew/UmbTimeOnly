@@ -1,4 +1,4 @@
-import { LitElement, html, css, customElement, property } from '@umbraco-cms/backoffice/external/lit';
+import { LitElement, html, css, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
 import type { UmbPropertyEditorUiElement } from '@umbraco-cms/backoffice/property-editor';
 import { UmbChangeEvent } from '@umbraco-cms/backoffice/event';
 
@@ -21,17 +21,9 @@ export default class UmbTimeOnly extends LitElement implements UmbPropertyEditor
     this.#timeValue = value
   }
 
-  // @property({ type: Object })
-  // public value: {} = {}
-
   @property()
   public timeValue = this.value
-
-  constructor() {
-    super();
-    console.log(this.value)
-    console.log(this.#timeValue)
-  }
+  
 
   render() {
     return html`
@@ -69,6 +61,8 @@ export default class UmbTimeOnly extends LitElement implements UmbPropertyEditor
   }
 
   #buildTimeStringFromObject(timeValue: { hour: number, minutes: number, seconds: number }) {
+    // Upon using the editor for the first time, #timeValue is undefined on the first render. Make this check to make sure it renders correctly on initiation.
+    if(!timeValue) return "";
     const hour = String(timeValue.hour).padStart(2, '0');
     const minutes = String(timeValue.minutes).padStart(2, '0');
     const seconds = String(timeValue.seconds).padStart(2, '0');
@@ -85,8 +79,6 @@ export default class UmbTimeOnly extends LitElement implements UmbPropertyEditor
   }
 
   static styles = css`
-    :host {
-    }
     .time-only-container {
       display: flex;
       gap: 10px;
