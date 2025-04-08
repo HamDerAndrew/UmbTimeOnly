@@ -1,4 +1,4 @@
-import { LitElement, html, css, customElement, property, state } from '@umbraco-cms/backoffice/external/lit';
+import { LitElement, html, css, customElement, property } from '@umbraco-cms/backoffice/external/lit';
 import type { UmbPropertyEditorUiElement } from '@umbraco-cms/backoffice/property-editor';
 import { UmbChangeEvent } from '@umbraco-cms/backoffice/event';
 
