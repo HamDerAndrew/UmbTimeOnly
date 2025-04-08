@@ -1,7 +1,7 @@
 {
     "$schema": "../../umbraco-package-schema.json",
     "name": "UmbTimeOnly",
-    "version": "15.0.6",
+    "version": "15.0.7",
     "extensions": [
         {
             "type": "propertyEditorUi",

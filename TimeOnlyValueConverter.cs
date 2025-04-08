@@ -7,7 +7,7 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 public class TimeOnlyValueConverter : IPropertyValueConverter
 {
-    public bool IsConverter(IPublishedPropertyType propertyType) => propertyType.EditorAlias == "UmbTimeOnly";
+    public bool IsConverter(IPublishedPropertyType propertyType) => propertyType.EditorUiAlias == "UmbTimeOnly";
     
     // Deserialize raw DB value into a usable .NET object (DTO, string, etc.)
     public object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source,
