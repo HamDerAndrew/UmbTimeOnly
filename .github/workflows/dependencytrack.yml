@@ -45,9 +45,6 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: Install CycloneDX Node.js CLI
-        run: npm install -g @cyclonedx/bom
-
       - name: Generate SBOM for Node.js (frontend)
         run: |
           FRONTEND_DIR="App_Plugins/UmbTimeOnly"
