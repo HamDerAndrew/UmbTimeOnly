@@ -52,7 +52,7 @@ jobs:
         run: |
           FRONTEND_DIR="App_Plugins/UmbTimeOnly"
           if [ -f "$FRONTEND_DIR/package-lock.json" ] || [ -f "$FRONTEND_DIR/yarn.lock" ]; then
-            cyclonedx-bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
+            npx @cyclonedx/bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
           else
             echo "No package-lock.json or yarn.lock found in $FRONTEND_DIR, skipping frontend SBOM."
           fi
