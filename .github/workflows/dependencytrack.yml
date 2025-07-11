@@ -50,10 +50,11 @@ jobs:
 
       - name: Generate SBOM for Node.js (frontend)
         run: |
-          if [ -f package-lock.json ] || [ -f yarn.lock ]; then
-            cyclonedx-bom -o ./sbom/bom-frontend.xml
+          FRONTEND_DIR="AppPlugins/UmbTimeOnly"
+          if [ -f "$FRONTEND_DIR/package-lock.json" ] || [ -f "$FRONTEND_DIR/yarn.lock" ]; then
+            cyclonedx-bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
           else
-            echo "No package-lock.json or yarn.lock found, skipping frontend SBOM."
+            echo "No package-lock.json or yarn.lock found in $FRONTEND_DIR, skipping frontend SBOM."
           fi
 
       # Upload .NET SBOM
