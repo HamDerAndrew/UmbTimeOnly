@@ -1,4 +1,4 @@
-name: Build and Upload SBOM to Dependency-Track
+name: Build and Upload SBOM to Dependency-Track 
 on:
   push:
     branches:
