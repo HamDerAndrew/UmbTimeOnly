@@ -50,7 +50,7 @@ jobs:
 
       - name: Generate SBOM for Node.js (frontend)
         run: |
-          FRONTEND_DIR="AppPlugins/UmbTimeOnly"
+          FRONTEND_DIR="App_Plugins/UmbTimeOnly"
           if [ -f "$FRONTEND_DIR/package-lock.json" ] || [ -f "$FRONTEND_DIR/yarn.lock" ]; then
             cyclonedx-bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
           else
