@@ -1,0 +1,43 @@
+name: Build and Upload SBOM to Dependency-Track
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  sbom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+      
+      - name: Restore .NET dependencies
+        run: dotnet restore
+      
+      - name: Install & Generate SBOM
+        run: |
+          dotnet tool install --global CycloneDX
+          dotnet CycloneDX $(find . -name "*.sln" | head -n 1) -o ./sbom -f xml
+          cat ./sbom/xml
+          ls -l ./sbom
+      
+      - name: Upload SBOM with curl (POST multipart)
+        env:
+          DTRACK_API_KEY2: ${{ secrets.DTRACK_API_KEY }}
+        run: |
+          curl --fail-with-body -v -i -w "\nHTTP Status: %{http_code}\n" \
+            -X POST "https://ca-dev-global-dtrack-api.whitesea-2475732e.westeurope.azurecontainerapps.io/api/v1/bom" \
+            -H "X-Api-Key: $DTRACK_API_KEY" \
+            -H "accept: application/json" \
+            -H "Content-Type: multipart/form-data" \
+            -F "autoCreate=true" \
+            -F "projectName=${{ github.event.repository.name }}" \
+            -F "projectVersion=${{ github.ref_name }}" \
+            -F "bom=@./sbom/xml"
