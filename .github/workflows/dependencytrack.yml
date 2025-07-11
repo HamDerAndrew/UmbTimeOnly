@@ -51,7 +51,6 @@ jobs:
           if [ -f "$FRONTEND_DIR/package.json" ]; then
             cd "$FRONTEND_DIR"
             npm install --save-dev @cyclonedx/bom
-            cd -
           else
             echo "No package.json found in $FRONTEND_DIR, skipping CycloneDX install."
           fi
@@ -60,7 +59,8 @@ jobs:
         run: |
           FRONTEND_DIR="App_Plugins/UmbTimeOnly"
           if [ -f "$FRONTEND_DIR/package-lock.json" ] || [ -f "$FRONTEND_DIR/yarn.lock" ]; then
-            "$FRONTEND_DIR/node_modules/.bin/cyclonedx-bom" -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
+            cd "$FRONTEND_DIR"
+            node_modules/.bin/cyclonedx-bom -o ../../sbom/bom-frontend.xml -p .
           else
             echo "No package-lock.json or yarn.lock found in $FRONTEND_DIR, skipping frontend SBOM."
           fi
