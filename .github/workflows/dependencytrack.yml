@@ -17,17 +17,17 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x'
-      
+
       - name: Restore .NET dependencies
         run: dotnet restore
-      
+
       - name: Install & Generate SBOM
         run: |
           dotnet tool install --global CycloneDX
-          dotnet CycloneDX $(find . -name "*.sln" | head -n 1) -o ./sbom -f xml
-          cat ./sbom/xml
+          dotnet-CycloneDX $(find . -name "*.sln" | head -n 1) -o ./sbom -fn bom.xml -F Xml
+          cat ./sbom/bom.xml
           ls -l ./sbom
-      
+
       - name: Upload SBOM with curl (POST multipart)
         env:
           DTRACK_API_KEY2: ${{ secrets.DTRACK_API_KEY }}
@@ -40,4 +40,4 @@ jobs:
             -F "autoCreate=true" \
             -F "projectName=${{ github.event.repository.name }}" \
             -F "projectVersion=${{ github.ref_name }}" \
-            -F "bom=@./sbom/xml"
+            -F "bom=@./sbom/bom.xml"
