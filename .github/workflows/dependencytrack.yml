@@ -50,7 +50,7 @@ jobs:
           FRONTEND_DIR="App_Plugins/UmbTimeOnly"
           if [ -f "$FRONTEND_DIR/package.json" ]; then
             cd "$FRONTEND_DIR"
-            npm install --save-dev @cyclonedx/bom
+            npm install --save-dev @cyclonedx/cyclonedx-npm
           else
             echo "No package.json found in $FRONTEND_DIR, skipping CycloneDX install."
           fi
