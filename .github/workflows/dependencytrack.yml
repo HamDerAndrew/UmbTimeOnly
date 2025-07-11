@@ -21,15 +21,34 @@ jobs:
       - name: Install & Generate SBOM
         run: |
           dotnet tool install --global CycloneDX
-          # Find the solution file and generate SBOM
+          
+          # Debug: List all files to see what's available
+          echo "Repository structure:"
+          find . -name "*.sln" -o -name "*.csproj" -o -name "*.fsproj" -o -name "*.vbproj" | head -10
+          
+          # Find the solution file first, fallback to project files
           SOLUTION_FILE=$(find . -name "*.sln" | head -n 1)
-          echo "Found solution file: $SOLUTION_FILE"
+          
+          if [ -z "$SOLUTION_FILE" ]; then
+            echo "No .sln file found, looking for project files..."
+            PROJECT_FILE=$(find . -name "*.csproj" -o -name "*.fsproj" -o -name "*.vbproj" | head -n 1)
+            if [ -z "$PROJECT_FILE" ]; then
+              echo "No solution or project files found!"
+              exit 1
+            else
+              echo "Found project file: $PROJECT_FILE"
+              TARGET_FILE="$PROJECT_FILE"
+            fi
+          else
+            echo "Found solution file: $SOLUTION_FILE"
+            TARGET_FILE="$SOLUTION_FILE"
+          fi
           
           # Create output directory
           mkdir -p ./sbom
           
           # Generate SBOM with correct syntax
-          dotnet-CycloneDX "$SOLUTION_FILE" --output ./sbom --filename bom.xml --output-format Xml
+          dotnet-CycloneDX "$TARGET_FILE" --output ./sbom --filename bom.xml --output-format Xml
           
           # Debug: Show what was generated
           echo "Generated SBOM files:"
