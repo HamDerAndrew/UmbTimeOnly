@@ -67,7 +67,7 @@ jobs:
             -H "accept: application/json" \
             -H "Content-Type: multipart/form-data" \
             -F "autoCreate=true" \
-            -F "projectName=${{ github.event.repository.name }}" \
+            -F "projectName=${{ github.event.repository.name }}-backend" \
             -F "projectVersion=${{ github.ref_name }}" \
             -F "bom=@./sbom/bom-dotnet.xml"
 
@@ -83,7 +83,7 @@ jobs:
               -H "accept: application/json" \
               -H "Content-Type: multipart/form-data" \
               -F "autoCreate=true" \
-              -F "projectName=${{ github.event.repository.name }}" \
+              -F "projectName=${{ github.event.repository.name }}-frontend" \
               -F "projectVersion=${{ github.ref_name }}" \
               -F "bom=@./sbom/bom-frontend.xml"
           else
