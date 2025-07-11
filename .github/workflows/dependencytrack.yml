@@ -45,11 +45,18 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: Install CycloneDX Node.js CLI in frontend
+        run: |
+          FRONTEND_DIR="App_Plugins/UmbTimeOnly"
+          cd "$FRONTEND_DIR"
+          npm install --save-dev @cyclonedx/bom
+          cd -
+
       - name: Generate SBOM for Node.js (frontend)
         run: |
           FRONTEND_DIR="App_Plugins/UmbTimeOnly"
           if [ -f "$FRONTEND_DIR/package-lock.json" ] || [ -f "$FRONTEND_DIR/yarn.lock" ]; then
-            npx @cyclonedx/bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
+            npx --prefix "$FRONTEND_DIR" @cyclonedx/bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
           else
             echo "No package-lock.json or yarn.lock found in $FRONTEND_DIR, skipping frontend SBOM."
           fi
