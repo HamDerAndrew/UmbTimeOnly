@@ -43,7 +43,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '22.x'
 
       - name: Install CycloneDX Node.js CLI in frontend
         run: |
@@ -56,7 +56,9 @@ jobs:
         run: |
           FRONTEND_DIR="App_Plugins/UmbTimeOnly"
           if [ -f "$FRONTEND_DIR/package-lock.json" ] || [ -f "$FRONTEND_DIR/yarn.lock" ]; then
-            npx --prefix "$FRONTEND_DIR" @cyclonedx/bom -o ./sbom/bom-frontend.xml -p "$FRONTEND_DIR"
+            cd "$FRONTEND_DIR"
+            npx @cyclonedx/bom -o ../../sbom/bom-frontend.xml -p .
+            cd -
           else
             echo "No package-lock.json or yarn.lock found in $FRONTEND_DIR, skipping frontend SBOM."
           fi
